@@ -1,12 +1,13 @@
 #=====
 # Instructions
+# Title: Example 5
 #=====
 
 The instructions for this example are going to be in two parts.
 
 #
 # Part 1
-For this part, you will need to use what we have learned today to create a 
+For this part, you will need to use what we have learned today to create a
 file in the ~/examples directory named:
 
     us-box-office-25-50
@@ -41,7 +42,7 @@ Here was how I did it:
      (which is the total amount earned)
   3) Then, we need to take out the '$' from the output, since the command
      we are going to use -- bc -- does not allow dollar signs in the input
-  4) After that, we need to take out the commas -- , --  just like we took out 
+  4) After that, we need to take out the commas -- , --  just like we took out
      the dollar signs
   5) Finally, we're going to pipe all of that into the following command:
         paste -s -d"+" | bc
@@ -54,7 +55,7 @@ The bc command is a simple command-line calculator that will evaluate
 the mathematical expression.
 
 It greatly helps to do all of this iteratively, meaning first I read the file.
-After I do that, I add the next part of the pipeline and look at the output. 
+After I do that, I add the next part of the pipeline and look at the output.
 After that output looks good, then I add the next part of the pipeline, and
 so on and so forth... :)
 
@@ -64,7 +65,7 @@ development.
 (read us-box-office-25-50)
 (read us-box-office-25-50) | (only print the 4th field)
 (read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs)
-(read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs) | (remove commas) 
+(read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs) | (remove commas)
 (read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs) | (remove commas) | paste -s -d"+"
 (read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs) | (remove commas) | paste -s -d"+" | bc
 
@@ -73,9 +74,9 @@ development.
 # Checking your work
 #=====
 
-Once you have created the file, you should 'cd' to ~/examples and type 
+Once you have created the file, you should 'cd' to ~/examples and type
 
-    bin/check5
+    check 5
 
 If all of the tests pass, then you have successfully completed this example.
 
@@ -85,7 +86,7 @@ If all of the tests pass, then you have successfully completed this example.
 #=====
 
 Hint 1:
-For part 1, I was able to accomplish this task with 2 piped commands and one 
+For part 1, I was able to accomplish this task with 2 piped commands and one
 redirect:
   command | command > redirect
 
@@ -93,5 +94,3 @@ Hint 2:
 For part 2, it is easiest to work on the development iteratively, as mentioned
 above. I've already given you the strangest-looking part of the pipeline:
   paste -s -d"+" | bc
-
-

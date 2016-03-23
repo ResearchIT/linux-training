@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+function listFiles()
+{
+  echo "Label Description" | awk '{printf "%-10s%-30s\n", $1, $2}'
+  for a in `ls ${INSTRUCTIONS_PATH}`
+  do
+    echo -n "${a}" | awk -F'.' '{printf "%-8s ", $2}' && cat ${INSTRUCTIONS_PATH}/${a} | grep "# Title" | awk -F':' '{printf "%s\n", $2}'
+  done
+}
+
+function error()
+{
+  usage
+  listFiles
+  exit 1
+}
+
+function usage()
+{
+  echo "Usage: instructions [-h|--help] [-l|--list] <label>"
+  echo ""
+  echo "For example: "
+  echo "Typing 'instructions 1' would print the information for the first example."
+  echo ""
+}
+
+
+if [[ "$1" = "-l" ]] || [[ "$1" == "--list" ]]
+then
+  listFiles
+  exit 0
+fi
+
+if [[ "$1" = "-h" ]] || [[ "$1" == "--help" ]]
+then
+  usage
+  exit 0
+fi
+
+
+if [[ -z "$1" ]]
+then
+  error
+fi
+
+if [[ ! -e "${INSTRUCTIONS_PATH}/instructions.$1" ]];
+then
+  error
+fi
+
+cat ${INSTRUCTIONS_PATH}/instructions.$1

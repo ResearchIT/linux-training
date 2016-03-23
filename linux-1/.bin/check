@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+function listFiles()
+{
+  for a in `ls ${INSTRUCTIONS_PATH}`
+  do
+    echo ${a} | awk -F'.' '{print $2}'
+  done
+}
+
+function error()
+{
+  echo "Unknown Instructions file. Please choose from the following list: " | fmt
+  echo ""
+  usage
+  listFiles
+  exit 1
+}
+
+function usage()
+{
+  echo "Usage: instructions [-h|--help] [-l|--list] `2`<example>"
+}
+
+
+
+if [[ "$1" = "-l" ]] || [[ "$1" == "--list" ]]
+then
+  listFiles
+  exit 0
+fi
+
+if [[ "$1" = "-h" ]] || [[ "$1" == "--help" ]]
+then
+  usage
+  exit 0
+fi
+
+
+if [[ -z "$1" ]]
+then
+  error
+fi
+
+if [[ ! -e "${INSTRUCTIONS_PATH}/instructions.$1" ]];
+then
+  error
+fi
+bash -c "${BINPATH}/check.$1"
