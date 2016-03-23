@@ -1,0 +1,60 @@
+#!/usr/bin/env bats
+
+CHECKED_FILE="sorted.numerical"
+CHECKED_FILE_2="sorted.text"
+load ../.helper/test_helper
+
+@test "Is my pwd ~/examples?" {
+    run pwd
+    assert_output "$HOME/examples"
+}
+
+@test "Does the file ${CHECKED_FILE} exist?" {
+    run stat ${CHECKED_FILE}
+    assert_success
+}
+
+@test "Does the file ${CHECKED_FILE} contain all of the expected lines?" {
+    run wc -l < ${CHECKED_FILE}
+    assert_output "17"
+}
+
+@test "Check the first line in the file" {
+    run head -n 1 ${CHECKED_FILE}
+    assert_output "alice"
+}
+
+@test "Check the seventh line of the file" {
+    run bash -c "head -n 7 ${CHECKED_FILE} | tail -n 1"
+    assert_output "0003"
+}
+
+@test "Check the last line of the file" {
+    run tail -n 1 ${CHECKED_FILE}
+    assert_output "1456"
+}
+
+@test "Does the file ${CHECKED_FILE_2} exist?" {
+    run stat ${CHECKED_FILE_2}
+    assert_success
+}
+
+@test "Does the file ${CHECKED_FILE_2} contain all of the expected lines?" {
+    run wc -l < ${CHECKED_FILE_2}
+    assert_output "17"
+}
+
+@test "Check the first line in the file" {
+    run head -n 1 ${CHECKED_FILE_2}
+    assert_output "0003"
+}
+
+@test "Check the seventh line of the file" {
+    run bash -c "head -n 7 ${CHECKED_FILE_2} | tail -n 1"
+    assert_output "111"
+}
+
+@test "Check the last line of the file" {
+    run tail -n 1 ${CHECKED_FILE_2}
+    assert_output "bob"
+}

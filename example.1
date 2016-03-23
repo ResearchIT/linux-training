@@ -1,0 +1,46 @@
+#=====
+# Instructions
+#=====
+
+For this example, you will need to use what we have learned today to create a 
+file in the ~/examples directory named:
+
+    output-example-1
+
+
+This file should contain the last five (5) lines from:
+    ~/examples/files/bill-of-rights
+
+#=====
+# Checking your work
+#=====
+
+Once you have created the file, you should 'cd' to ~/examples and type 
+
+    bin/check1
+
+
+If you have completed the exercise correctly, you should see something that
+resembles the following:
+
+---
+[bbritt@training examples]$ check1
+ ✓ Is my pwd ~/examples?
+ ✓ Does the file output-example-1 exist?
+ ✓ Does the file output-example-1 contain 5 lines?
+ ✓ Does the file start with 'Amendment VI'?
+ ✓ Does the file end with 'Amendment X'?
+
+5 tests, 0 failures
+---
+
+#=====
+# Hints
+#=====
+#
+Hint 1:
+Once you have created this file, you should be able to run 
+'wc -l ~/examples/output-example-1' and see that the file contains 5 lines.
+
+Hint 2:
+You should be able to accomplish this task using one command and one redirect.

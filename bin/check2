@@ -1,0 +1,29 @@
+#!/usr/bin/env bats
+
+CHECKED_FILE="output-example-2"
+load ../.helper/test_helper
+
+@test "Is my pwd ~/examples?" {
+    run pwd
+    assert_output $output "$HOME/examples"
+}
+
+@test "Does the file ${CHECKED_FILE} exist?" {
+    run stat ${CHECKED_FILE}
+    assert_success
+}
+
+@test "Does the file ${CHECKED_FILE} contain 5 lines?" {
+    run wc -l ${CHECKED_FILE}
+    assert_output $output "5"
+}
+
+@test "Does the file start with 'IN CONGRESS'?" {
+    run head -n 1 ${CHECKED_FILE}
+    assert_output_contains "IN CONGRESS"
+}
+
+@test "Does the file end with 'separate and equal'?" {
+    run tail -n 1 ${CHECKED_FILE}
+    assert_output_contains "separate and equal"
+}

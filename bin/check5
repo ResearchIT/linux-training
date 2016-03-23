@@ -1,0 +1,41 @@
+#!/usr/bin/env bats
+
+CHECKED_FILE="us-box-office-25-50"
+CHECKED_FILE_2="us-box-office-25-50-total"
+
+load ../.helper/test_helper
+
+@test "Is my pwd ~/examples?" {
+    run pwd
+    assert_output $output "$HOME/examples"
+}
+
+@test "Does the file ${CHECKED_FILE} exist?" {
+    run stat ${CHECKED_FILE}
+    assert_success
+}
+
+@test "Does the file ${CHECKED_FILE} contain all of the expected lines?" {
+    run wc -l ${CHECKED_FILE}
+    assert_output $output "26"
+}
+
+@test "Does the file start with '25'?" {
+    run head -n 1 ${CHECKED_FILE}
+    assert_output_contains "25"
+}
+
+@test "Does the file end with '50'?" {
+    run tail -n 1 ${CHECKED_FILE}
+    assert_output_contains "50"
+}
+
+@test "Does the file ${CHECKED_FILE_2} exist?" {
+    run stat ${CHECKED_FILE_2}
+    assert_success
+}
+
+@test "Is the total correct?" {
+    run cat ${CHECKED_FILE_2}
+    assert_output $output "8816498883"
+}
