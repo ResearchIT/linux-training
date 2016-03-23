@@ -3,9 +3,9 @@
 CHECKED_FILE="output-example-1"
 load ../.helper/test_helper
 
-@test "Is my pwd ~/examples?" {
+@test "Is my pwd ~/linux-1?" {
     run pwd
-    assert_output $output "$HOME/examples"
+    assert_output "${HOME}/linux-1"
 }
 
 @test "Does the file ${CHECKED_FILE} exist?" {
