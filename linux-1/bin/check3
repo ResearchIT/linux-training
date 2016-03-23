@@ -3,11 +3,6 @@
 CHECKED_FILE="ALLCAPS"
 load ../.helper/test_helper
 
-@test "Is my pwd ~/examples?" {
-    run pwd
-    assert_output "$HOME/examples"
-}
-
 @test "Does the file ${CHECKED_FILE} exist?" {
     run stat ${CHECKED_FILE}
     assert_success
@@ -19,8 +14,8 @@ load ../.helper/test_helper
 }
 
 @test "See if there are any lower-case letters in the file" {
-    run grep "[a-z]" ${CHECKED_FILE}
-    assert_failure
+    run bash -c "grep \"[a-z]\" ${CHECKED_FILE} | wc -l"
+    assert_output "0"
 }
 
 @test "Check that the bill of rights is included last" {

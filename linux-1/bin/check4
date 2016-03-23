@@ -4,11 +4,6 @@ CHECKED_FILE="sorted.numerical"
 CHECKED_FILE_2="sorted.text"
 load ../.helper/test_helper
 
-@test "Is my pwd ~/examples?" {
-    run pwd
-    assert_output "$HOME/examples"
-}
-
 @test "Does the file ${CHECKED_FILE} exist?" {
     run stat ${CHECKED_FILE}
     assert_success

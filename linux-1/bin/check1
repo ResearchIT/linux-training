@@ -3,19 +3,14 @@
 CHECKED_FILE="output-example-1"
 load ../.helper/test_helper
 
-@test "Is my pwd ~/linux-1?" {
-    run pwd
-    assert_output "${HOME}/linux-1"
-}
-
 @test "Does the file ${CHECKED_FILE} exist?" {
     run stat ${CHECKED_FILE}
     assert_success
 }
 
 @test "Does the file ${CHECKED_FILE} contain 5 lines?" {
-    run wc -l ${CHECKED_FILE}
-    assert_output $output "5"
+    run wc -l < ${CHECKED_FILE}
+    assert_output "5"
 }
 
 @test "Does the file start with 'Amendment VI'?" {
