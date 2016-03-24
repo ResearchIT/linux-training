@@ -1,36 +1,33 @@
 #!/usr/bin/env bats
 
-CHECKED_FILE="us-box-office-25-50"
-CHECKED_FILE_2="us-box-office-25-50-total"
-
 load ../.helper/test_helper
 
-@test "Does the file ${CHECKED_FILE} exist?" {
-    run stat ${CHECKED_FILE}
+@test "Does the file us-box-office-25-50 exist?" {
+    run stat us-box-office-25-50
     assert_success
 }
 
-@test "Does the file ${CHECKED_FILE} contain all of the expected lines?" {
-    run wc -l < ${CHECKED_FILE}
+@test "Does the file us-box-office-25-50-total exist?" {
+    run stat us-box-office-25-50-total
+    assert_success
+}
+
+@test "Does the file us-box-office-25-50 contain all of the expected lines?" {
+    run wc -l < us-box-office-25-50
     assert_output "26"
 }
 
 @test "Does the file start with '25'?" {
-    run head -n 1 < ${CHECKED_FILE}
+    run head -n 1 < us-box-office-25-50
     assert_output_contains "25"
 }
 
 @test "Does the file end with '50'?" {
-    run tail -n 1 < ${CHECKED_FILE}
+    run tail -n 1 < us-box-office-25-50
     assert_output_contains "50"
 }
 
-@test "Does the file ${CHECKED_FILE_2} exist?" {
-    run stat ${CHECKED_FILE_2}
-    assert_success
-}
-
 @test "Is the total correct?" {
-    run cat ${CHECKED_FILE_2}
+    run cat us-box-office-25-50-total
     assert_output "8816498883"
 }

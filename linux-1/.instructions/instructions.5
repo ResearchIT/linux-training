@@ -1,9 +1,13 @@
 #=====
 # Instructions
-# Title: Example 5
+# Title: Example 5 -
 #=====
 
 The instructions for this example are going to be in two parts.
+
+For both parts, we will be using the file
+
+    ./files/box-office-domestic
 
 #
 # Part 1
@@ -19,9 +23,9 @@ If done correctly, the output should look something like this. (NOTE: there will
 25 total lines in your file, I truncated this file for brevity)
 
 ---
+25      Star Wars: Episode III - Revenge of the Sith    Fox     $380,270,577    2005
 26      The Lord of the Rings: The Return of the King   NL      $377,845,905    2003
 27      Spider-Man 2    Sony    $373,585,825    2004
-28      The Passion of the Christ       NM      $370,782,930    2004
 <<more lines go here>>
 49      Star Wars: Episode II - Attack of the Clones    Fox     $310,676,740    2002
 50      Pirates of the Caribbean: At World's End        BV      $309,420,425    2007
@@ -91,6 +95,11 @@ redirect:
   command | command > redirect
 
 Hint 2:
+For part 2, you can use the 'cut' binary to grab the fourth field of the text.
+You need to specify the "field type" for this to be '\t', in order to get the
+correct column.
+
+Hint 3:
 For part 2, it is easiest to work on the development iteratively, as mentioned
 above. I've already given you the strangest-looking part of the pipeline:
   ... paste -s -d"+" | bc
