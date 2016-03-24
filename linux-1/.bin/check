@@ -46,4 +46,6 @@ if [[ ! -e "${INSTRUCTIONS_PATH}/instructions.$1" ]];
 then
   error
 fi
+
+clear
 bash -c "${BINPATH}/check.$1"
