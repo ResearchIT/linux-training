@@ -1,0 +1,13 @@
+#!/usr/bin/env bats
+
+load ../.helper/test_helper
+
+@test "Does the file us-box-office-25-50-total exist?" {
+    run stat us-box-office-25-50-total
+    assert_success
+}
+
+@test "Is the total correct?" {
+    run cat us-box-office-25-50-total
+    assert_output "8816498883"
+}

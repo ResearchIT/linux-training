@@ -1,0 +1,75 @@
+#=====
+# Instructions
+# Title: Example 6 - Pipes, Iterative Development, and addition
+#=====
+
+The instructions for this example are going to be in two parts.
+
+For both parts, we will be using the file created in the last example
+
+    us-box-office-25-50
+
+We want to total the box-office earnings for all of these films. We will put
+this into a file named:
+
+    us-box-office-25-50-total
+
+To do this, we need to do at least 5 commands, each piped to the next command.
+
+Here was how I did it:
+  1) First, we need to read the us-box-office-25-50 file
+  2) Next, we take the input of that command, and print out the 4th field
+     (which is the total amount earned)
+  3) Then, we need to take out the '$' from the output, since the command
+     we are going to use -- bc -- does not allow dollar signs in the input
+  4) After that, we need to take out the commas -- , --  just like we took out
+     the dollar signs
+  5) Finally, we're going to pipe all of that into the following command:
+        paste -s -d"+" | bc
+
+The paste command takes all of lines and appends a 'delimiter' to it (-d).
+The delimiter we will use is the addition sign '+'. Also, the (-s) option
+to paste removes all of the new-lines and puts everything into one line.
+
+The bc command is a simple command-line calculator that will evaluate
+the mathematical expression.
+
+**IMPORTANT NOTE**
+It greatly helps to do all of this iteratively, meaning first I read the file.
+After I do that, I add the next part of the pipeline and look at the output.
+After that output looks good, then I add the next part of the pipeline, and
+so on and so forth... :)
+
+So, when I get done, if I look at the history, I can see the progression of
+development.
+
+(read us-box-office-25-50)
+(read us-box-office-25-50) | (only print the 4th field)
+(read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs)
+(read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs) | (remove commas)
+(read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs) | (remove commas) | paste -s -d"+"
+(read us-box-office-25-50) | (only print the 4th field) | (remove Dollar Signs) | (remove commas) | paste -s -d"+" | bc
+
+
+#=====
+# Checking your work
+#=====
+
+Once you have created the file, you should 'cd' to ~/examples and type
+
+    check 6
+
+If all of the tests pass, then you have successfully completed this example.
+
+
+#=====
+# Hints
+#=====
+
+Hint 1:
+You can use the 'cut' program to grab the fourth field of the text.
+
+Hint 2:
+It is easiest to work on the development iteratively, as mentioned above. I've
+already given you the strangest-looking part of the pipeline:
+  ... paste -s -d"+" | bc

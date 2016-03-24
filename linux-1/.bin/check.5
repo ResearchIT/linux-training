@@ -7,11 +7,6 @@ load ../.helper/test_helper
     assert_success
 }
 
-@test "Does the file us-box-office-25-50-total exist?" {
-    run stat us-box-office-25-50-total
-    assert_success
-}
-
 @test "Does the file us-box-office-25-50 contain all of the expected lines?" {
     run wc -l < us-box-office-25-50
     assert_output "26"
@@ -25,9 +20,4 @@ load ../.helper/test_helper
 @test "Does the file end with '50'?" {
     run tail -n 1 < us-box-office-25-50
     assert_output_contains "50"
-}
-
-@test "Is the total correct?" {
-    run cat us-box-office-25-50-total
-    assert_output "8816498883"
 }
