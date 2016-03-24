@@ -48,4 +48,5 @@ then
   error
 fi
 
+clear
 cat ${INSTRUCTIONS_PATH}/instructions.$1
